@@ -13,8 +13,8 @@
 
 
 ///路径
-std::string filePath = "/Users/wzb/Desktop/5i5j/调研项目/imu方案/imu-data/imu0数据.txt";
-std::string outputPath = "/Users/wzb/Desktop/5i5j/调研项目/imu方案/imu-data/";
+std::string filePath = "/Users/wzb/Desktop/5i5j/调研项目/imu方案/imu-data2/imu0数据.txt";
+std::string outputPath = "/Users/wzb/Desktop/5i5j/调研项目/imu方案/imu-data2/";
 std::string fileName_out = "处理数据";
 ///读入文件参数
 int totalRow = 0;            //总行数，只用于显示进度条
