@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		31406E9A2A623EB5009FD5E7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31406E992A623EB5009FD5E7 /* main.cpp */; };
+		314AB9B82A8B60A400CD2F41 /* IMU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 314AB9B72A8B60A400CD2F41 /* IMU.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		31406E962A623EB5009FD5E7 /* IMUPostureAndPositionComputing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IMUPostureAndPositionComputing; sourceTree = BUILT_PRODUCTS_DIR; };
 		31406E992A623EB5009FD5E7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		314AB9B62A8B60A400CD2F41 /* IMU.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IMU.hpp; sourceTree = "<group>"; };
+		314AB9B72A8B60A400CD2F41 /* IMU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IMU.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				31406E992A623EB5009FD5E7 /* main.cpp */,
+				314AB9B72A8B60A400CD2F41 /* IMU.cpp */,
+				314AB9B62A8B60A400CD2F41 /* IMU.hpp */,
 			);
 			path = IMUPostureAndPositionComputing;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31406E9A2A623EB5009FD5E7 /* main.cpp in Sources */,
+				314AB9B82A8B60A400CD2F41 /* IMU.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
