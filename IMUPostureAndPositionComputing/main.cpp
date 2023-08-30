@@ -13,14 +13,16 @@
 
 
 ///路径
-std::string filePath = "/Users/wzb/Desktop/5i5j/调研项目/imu方案/imu-data-0815/B/imu0数据.txt";
-std::string outputPath = "/Users/wzb/Desktop/5i5j/调研项目/imu方案/imu-data-0815/B/";
+std::string filePath = "/Users/wzb/Desktop/5i5j/调研项目/imu方案/imu-data-0816/B/巨大不规则方形/imu0数据.txt";
+std::string outputPath = "/Users/wzb/Desktop/5i5j/调研项目/imu方案/imu-data-0816/B/巨大不规则方形/";
 std::string fileName_out = "imu0结果";
 ///读入文件参数
 int totalRow = 0;            //总行数，只用于显示进度条
-int rowStartRead = 1;        //表头的最后所在行，去除表头用
+int rowStartRead = 0;        //表头的最后所在行，去除表头用
 ///四元数相关
 //参与计算的加速度单位g 陀螺仪单位是弧度/s()【度*pi/180=弧度】
+#define Gyro_Gr        0.0010653f
+
 #define Kp 10.8f    //比例系数变量Kp
 #define Ki 0.008f   //积分系数变量KI
 //#define pi 3.14159265f
@@ -203,14 +205,14 @@ public:
 //            p.accel_z = stof(temp_v[6]);
 
             
-            p.Timestamps = stof(temp_v[0]);//stod//调换y和z
-            p.gyro_x = stof(temp_v[1]);
-            p.gyro_y = stof(temp_v[2]);
-            p.gyro_z = stof(temp_v[3]);
-            p.accel_x = stof(temp_v[4]);
-            p.accel_y = stof(temp_v[5]);
+            p.Timestamps = stof(temp_v[1]);//stod//调换y和z
+            p.gyro_x = stof(temp_v[4]);
+            p.gyro_y = stof(temp_v[3]);
+            p.gyro_z = stof(temp_v[2]);
+            p.accel_x = stof(temp_v[7]);
+            p.accel_y = stof(temp_v[6]);
             //p.accel_y = stof(temp_v[5]) - 9.8f;
-            p.accel_z = stof(temp_v[6]);
+            p.accel_z = stof(temp_v[5]);
             
             ///输出测试_p
             //std::cout.precision(10);
@@ -464,6 +466,9 @@ public:
 
         if (data.accel_x * data.accel_y * data.accel_z == 0)
             return previous_state_;
+        data.gyro_x *= Gyro_Gr;
+        data.gyro_y *= Gyro_Gr;
+        data.gyro_z *= Gyro_Gr;
         /* 对加速度数据进行归一化处理 */
         recipNorm = invSqrt(data.accel_x * data.accel_x + data.accel_y * data.accel_y + data.accel_z * data.accel_z);
         data.accel_x = data.accel_x * recipNorm;
@@ -527,7 +532,7 @@ public:
         g_next.z = -g_next.z;//依据未知。仅根据输出结果，修改g_next的Z值方向
         Vector3 a_local = a_next + g_next;
     
-        FilterAcceInWorld(q_next, a_local);//滤除小于区间范围的加速度增量，强行减少扰动//trick
+        //FilterAcceInWorld(q_next, a_local);//滤除小于区间范围的加速度增量，强行减少扰动//trick
 
         /*2、局部坐标系_上一刻的速度变换至本时刻*/
         Quaternion q_prevToNext = RotateQua(q_prev, q_next);//姿态_上一时刻->本时刻
@@ -745,7 +750,7 @@ int main()
     /*2、滤波处理*/
     Filter filter;//滤波处理对象
     std::cout << std::endl << "滤波处理中..." << std::endl;
-    filter.KalmenFilterParent(imu_original);//对加速度进行卡尔曼滤波
+    //filter.KalmenFilterParent(imu_original);//对加速度进行卡尔曼滤波
 
 
     /*3、解算处理*/
